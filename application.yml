@@ -1,0 +1,40 @@
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]:localhost}
+    preferIpAddress: false
+    nonSecurePort: 80
+    non-secure-port: 80
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    secure-port-enabled: false
+    securePortEnabled: false
+
+ribbon:
+  IsSecure: false
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+management:
+  security:
+    enabled: false
+
+
+debug: true
+
+gateway:
+  basic:
+    user: ${gateway-basic-user:gwuser}
+    password: ${gateway-basic-secret:gwsecret}
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+zuul:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
